@@ -18,4 +18,4 @@ RUN npm install
 
 EXPOSE 3333
 
-ENTRYPOINT "./entrypoint.sh"
+ENTRYPOINT "chmod +x./entrypoint.sh && ./entrypoint.sh"
