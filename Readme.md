@@ -1,2 +1,3 @@
-Grupo 6
-contrução sw
+# # Trabalho constr-sw-2022-2 grupo6
+
+## Alunos: Jonatas Van Groll Lemos, Rafael Fontana Dias, Aderson de Souza Fajardo, Giovanni Goncalves Migon.
