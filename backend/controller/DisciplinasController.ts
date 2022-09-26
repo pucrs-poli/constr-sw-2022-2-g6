@@ -13,7 +13,7 @@ import {
   loggerBeforeReturn,
 } from "../logger/loggerFunction";
 
-const serviceUrl = "http://ec2-34-238-114-89.compute-1.amazonaws.com:3000/";
+//const serviceUrl = "http://ec2-34-238-114-89.compute-1.amazonaws.com:3000/";
 const axiosConfig: AxiosRequestConfig = { baseURL: serviceUrl };
 const axiosInstance: AxiosInstance = Axios.create(axiosConfig);
 
