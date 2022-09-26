@@ -3,7 +3,7 @@ import { Router } from "express";
 const routes = Router();
 import handle from "express-async-handler";
 
-import DisciplineController from "../controllers/DisciplineController";
+import DisciplineController from "../controller/DisciplinasController";
 
 routes.get("/disciplinas", handle(DisciplineController.getAllOrQuery));
 
