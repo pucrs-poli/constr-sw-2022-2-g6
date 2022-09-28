@@ -347,7 +347,7 @@
         }
       ],
       "security-admin-console": [],
-      "grupo1": [
+      "grupo6": [
         {
           "id": "b066c97b-0bde-4330-95a5-47af761b0ee0",
           "name": "uma_protection",
@@ -529,18 +529,18 @@
     {
       "id": "08f355f1-4900-4151-9875-2e258e3f1a6f",
       "createdTimestamp": 1661384797144,
-      "username": "service-account-grupo1",
+      "username": "service-account-grupo6",
       "enabled": true,
       "totp": false,
       "emailVerified": false,
-      "serviceAccountClientId": "grupo1",
+      "serviceAccountClientId": "grupo6",
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
         "default-roles-constr-sw-2022-2"
       ],
       "clientRoles": {
-        "grupo1": [
+        "grupo6": [
           "uma_protection"
         ]
       },
@@ -737,7 +737,7 @@
     },
     {
       "id": "ebbe607b-f101-489e-8236-77d94d9c2c8f",
-      "clientId": "grupo1",
+      "clientId": "grupo6",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -848,38 +848,13 @@
         "resources": [
           {
             "name": "Default Resource",
-            "type": "urn:grupo1:resources:default",
+            "type": "urn:grupo6:resources:default",
             "ownerManagedAccess": false,
             "attributes": {},
             "_id": "8e6f57b9-cfb1-487d-b7e2-c729d0925dfd",
             "uris": [
               "/*"
             ]
-          }
-        ],
-        "policies": [
-          {
-            "id": "54236f42-fef6-4d3e-96ff-d1f6ea27ee24",
-            "name": "Default Policy",
-            "description": "A policy that grants access only for users within this realm",
-            "type": "js",
-            "logic": "POSITIVE",
-            "decisionStrategy": "AFFIRMATIVE",
-            "config": {
-              "code": "// by default, grants any permission associated with this policy\n$evaluation.grant();\n"
-            }
-          },
-          {
-            "id": "4ff13ffb-3084-4ada-8c4b-672043ddfb9f",
-            "name": "Default Permission",
-            "description": "A permission that applies to the default resource type",
-            "type": "resource",
-            "logic": "POSITIVE",
-            "decisionStrategy": "UNANIMOUS",
-            "config": {
-              "defaultResourceType": "urn:grupo1:resources:default",
-              "applyPolicies": "[\"Default Policy\"]"
-            }
           }
         ],
         "scopes": [],
