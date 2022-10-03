@@ -1,1 +1,1 @@
-Trabalho Construcão de Software 2022-2 Grupo 6 
+Trabalho Construcão de Software 2022-2 Grupo 6
