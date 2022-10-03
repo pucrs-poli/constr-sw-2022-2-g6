@@ -13,6 +13,7 @@
         "swagger-autogen": "^2.21.7",
         "swagger-jsdoc": "^6.2.5",
         "swagger-ui-express": "^4.5.0",
+        "winston": "^3.8.2",
         "yamljs": "^0.3.0"
     }
 }

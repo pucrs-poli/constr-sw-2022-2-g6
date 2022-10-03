@@ -11,7 +11,7 @@ import {
   loggerRequest,
   loggerResponse,
   loggerBeforeReturn,
-} from "../logger/loggerFunction";
+} from "../logger/";
 
 const serviceUrl = "http://localhost:3000/"
 

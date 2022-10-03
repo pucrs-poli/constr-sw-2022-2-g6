@@ -1,11 +1,11 @@
 import yup from "../validators/validator";
 
 const disciplineYupUpdate = yup.object().shape({
-  nome: yup.string().optional().min(5).max(30),
-  objetivos: yup.string().optional().min(10).max(300),
+  nome: yup.string().optional().min(3).max(30),
+  objetivos: yup.string().optional().min(10).max(500),
   ementa: yup.string().optional().min(10).max(300),
   bibliografia: yup
-    .array(yup.string().optional().min(10).max(50))
+    .array(yup.string().optional().min(10).max(60))
     .optional()
     .min(1)
     .max(10),
