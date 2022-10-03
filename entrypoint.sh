@@ -9,5 +9,3 @@ su -c 'mkdir /data'\
 mongod --fork --logpath /var/log/mongod.log
 
 mongo admin --eval 'db.createUser({user: "root", pwd: "password", roles: [ "root" ]});'
-
-npm run dev
