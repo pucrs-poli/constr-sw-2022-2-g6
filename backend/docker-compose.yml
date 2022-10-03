@@ -1,20 +1,39 @@
-version: "3"
+version: "3.4"
+networks:
+  constr-sw-2022-2:
+volumes:
+  keycloak-data:
+    external: false
 services:
-  mongo-express:
-    image: mongo-express
+  keycloak:
+    container_name: keycloak
+    image: jboss/keycloak:latest
     ports:
-      - 8081:8081
+      - 8080:8080
     environment:
-      ME_CONFIG_BASICAUTH_USERNAME: grupo6
-      ME_CONFIG_BASICAUTH_PASSWORD: grupo6
-      ME_CONFIG_MONGODB_PORT: 27017
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: password
-    links:
-      - mongo
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=a12345678
+    volumes:
+      - keycloak-data:/opt/jboss/keycloak/standalone/data
     networks:
-      - mongo-compose-network
-
+      - constr-sw-2022-2
+  keycloak-api:
+    depends_on:
+      - keycloak
+  disciplinas-api:
+    depends_on:
+      - mongo 
+      - keycloak
+    build: ./
+    image: disciplinas:latest
+    environment:
+      NODE_ENV: production
+      MONGO_URL: mongo
+    ports:
+      - 3333:3333
+    networks:
+      - constr-sw-2022-2
+    restart: unless-stopped
   mongo:
     image: mongo
     environment:
@@ -27,24 +46,4 @@ services:
       - mongodb_data_volume:/data/db
     networks:
       - mongo-compose-network
-    restart: unless-stopped
-
-  disciplinas:
-    build: ./
-    image: disciplinas:latest
-    environment:
-      NODE_ENV: production
-      MONGO_URL: mongo
-    ports:
-      - 3333:3333
-    networks:
-      - mongo-compose-network
-    restart: unless-stopped
-
-networks:
-  mongo-compose-network:
-    driver: bridge
-
-volumes:
-  mongodb_volume:
-  mongodb_data_volume:
+    restart: unless-stopped   
