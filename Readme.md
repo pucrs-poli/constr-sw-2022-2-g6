@@ -7,7 +7,8 @@ docker-compose up
 ```
 
 Acesso ao [keycloak](http://localhost:8080)
-Acesso ao [swagger](http://localhost:3000/api-docs)
+Pra rodar o swagger executar o comando ```npm start``` na raiz do projeto e acessar o [encereço](http://localhost:3000/api-docs).
+
 
 **É necessário criar um realm, idealmente importando o arquivo fornecido pelo professor que já vem pronto. Existe uma cópia do arquivo json para importar lá na interface do keycloak na pasta utils deste repositório.**
 
