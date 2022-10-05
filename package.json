@@ -2,14 +2,13 @@
     "name": "constr-sw-2022-2-g6",
     "version": "1.0.0",
     "description": "Trabalho 1 grupo Constr SW Grupo 6",
-    "main": "build/index.js",
+    "main": "index.js",
     "scripts": {
-        "dev": "ts-node-dev --transpile-only --ignore-watch node_modules server.ts",
-        "swagger-autogen": "swagger.yml"
+        "start": "npx tsc && node build/index.js"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/pucrs-poli/constr-sw-2022-2-g1.git"
+        "url": "git+https://github.com/pucrs-poli/constr-sw-2022-2-g6.git"
     },
     "author": "Grupo 6",
     "license": "ISC",

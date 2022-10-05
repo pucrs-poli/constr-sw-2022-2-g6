@@ -4,7 +4,6 @@ import disciplineRepository from "../models/Discipline";
 import discipline_view from "../view/discipline_view";
 import Axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { InterfaceDiscipline } from "../interfaces/discipline";
-import { QueryFindOptions } from "mongoose";
 import disciplineYup from "../models/DisciplineYup";
 import disciplineYupUpdate from "../models/DisciplineYupUpdate";
 import {

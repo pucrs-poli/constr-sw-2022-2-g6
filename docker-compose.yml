@@ -1,15 +1,15 @@
-version: '3.4'
+version: "3.4"
 networks:
   constr-sw-2022-2:
 volumes:
   keycloak-data:
-    external: true
+    external: false
 services:
   keycloak:
     container_name: keycloak
     image: jboss/keycloak:latest
     ports:
-      - 8888:8888
+      - 8080:8080
     environment:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=a12345678
@@ -17,35 +17,10 @@ services:
       - keycloak-data:/opt/jboss/keycloak/standalone/data
     networks:
       - constr-sw-2022-2
-  disciplinas-api:
-    depends_on: 
-      #- mongo 
-      - keycloak
-    build: ./
-    image: disciplinas:latest
-    environment:
-      #- NODE_ENV: production
-      #- MONGO_URL: mongo
-      - NODE_ENV=production
-      - KEYCLOAK_REALM=master
-      - KEYCLOAK_AUTH_SERVER_URL=http://localhost:8080/auth
-      - KEYCLOAK_RESOURCE=grupo6
-      - KEYCLOAK_SECRET=wnF782ly8lzwkx2lStWjYZfotIWEfXes
+  backend:
+    container_name: backend
+    build: .
     ports:
-      - 8080:8080
+      - 3000:3000
     networks:
       - constr-sw-2022-2
-    restart: unless-stopped
-  # backend:
-  #   image: mongo
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: root
-  #     MONGO_INITDB_ROOT_PASSWORD: password
-  #   ports:
-  #     - "27017:27017"
-  #   volumes:
-  #     - mongodb_volume:/home/mongodb
-  #     - mongodb_data_volume:/data/db
-  #   networks:
-  #     - mongo-compose-network
-  #   restart: unless-stopped   
