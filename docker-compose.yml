@@ -3,7 +3,7 @@ networks:
   constr-sw-2022-2:
 volumes:
   keycloak-data:
-    external: false
+    external: true
 services:
   keycloak:
     container_name: keycloak
