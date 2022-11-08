@@ -17,6 +17,6 @@ const Disciplina = new Schema({
     requisito: { type: Schema.Types.ObjectId, ref: 'Disciplina' },
     semestre: { type: Schema.Types.ObjectId, ref: 'Curriculo' },
 });
-
+ 
 module.exports = mongoose.model("CurriculoInstance", Curriculo);
 module.exports = mongoose.model("DisciplinaInstance", Disciplina);
