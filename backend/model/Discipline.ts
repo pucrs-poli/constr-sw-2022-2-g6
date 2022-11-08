@@ -12,6 +12,7 @@ export interface IDiscipline extends mongoose.Document {
   turma?: string;
 }
 
+
 const disciplineSchema = new mongoose.Schema({
   nome: {
     type: String,
@@ -37,3 +38,14 @@ const disciplineSchema = new mongoose.Schema({
     type: Number,
     requires: true,
   },
+  turma: {
+    type: String,
+    required: true,
+  },
+  criado: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+export default mongoose.model<IDiscipline>("Disciplina", disciplineSchema);

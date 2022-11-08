@@ -29,4 +29,13 @@ const disciplineSchema = new mongoose_1.default.Schema({
         type: Number,
         requires: true,
     },
+    turma: {
+        type: String,
+        required: true,
+    },
+    criado: {
+        type: Date,
+        default: Date.now,
+    },
 });
+exports.default = mongoose_1.default.model("Disciplina", disciplineSchema);
