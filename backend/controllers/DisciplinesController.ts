@@ -4,7 +4,7 @@ import disciplines_view from "../view/disciplines_view";
 import disciplineRepository from "../model/Discipline";
 import Axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { InterfaceDiscipline } from "../interfaces/discipline";
-import { QueryFindOptions } from "mongoose";
+import { QueryOptions } from "mongoose";
 import disciplineYup from "../model/DisciplineYup";
 import disciplineYupUpdate from "../model/DisciplineYupUpdate";
 import {
@@ -29,7 +29,7 @@ export default {
         params: request.params,
       });
 
-      const query: QueryFindOptions = request.query;
+      const query: QueryOptions = request.query;
       const disciplines = await disciplineRepository.find(query);
 
       if (disciplines) {

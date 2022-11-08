@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const disciplines_view_1 = __importDefault(require("../view/disciplines_view"));
 const Discipline_1 = __importDefault(require("../model/Discipline"));
 const axios_1 = __importDefault(require("axios"));
-//import { QueryFindOptions } from "mongoose";
 const DisciplineYup_1 = __importDefault(require("../model/DisciplineYup"));
 const DisciplineYupUpdate_1 = __importDefault(require("../model/DisciplineYupUpdate"));
 const loggerFunction_1 = require("../logger/loggerFunction");
@@ -34,18 +33,18 @@ exports.default = {
                     body: request.body,
                     params: request.params,
                 });
-                //const query: QueryFindOptions = request.query;
-                //const disciplines = await disciplineRepository.find(query);
-                if (DisciplineYup_1.default) {
+                const query = request.query;
+                const disciplines = yield Discipline_1.default.find(query);
+                if (disciplines) {
                     (0, loggerFunction_1.loggerResponse)({
                         method: "GetAllOrQuery",
                         action: "Buscar disciplinas com query ou não",
                         url: request.url,
-                        response: disciplines_view_1.default.renderMany(DisciplineYup_1.default),
+                        response: disciplines_view_1.default.renderMany(disciplines),
                     });
                     return response
                         .status(200)
-                        .json(disciplines_view_1.default.renderMany(DisciplineYup_1.default));
+                        .json(disciplines_view_1.default.renderMany(disciplines));
                 }
                 (0, loggerFunction_1.loggerBeforeReturn)({ message: "Não há disciplinas cadastradas" });
                 return response.status(204).json("Não há disciplinas cadastradas");
