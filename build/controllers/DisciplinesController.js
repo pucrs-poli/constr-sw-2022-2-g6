@@ -15,10 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const disciplines_view_1 = __importDefault(require("../view/disciplines_view"));
 const Discipline_1 = __importDefault(require("../model/Discipline"));
 const axios_1 = __importDefault(require("axios"));
+//import { QueryFindOptions } from "mongoose";
 const DisciplineYup_1 = __importDefault(require("../model/DisciplineYup"));
 const DisciplineYupUpdate_1 = __importDefault(require("../model/DisciplineYupUpdate"));
 const loggerFunction_1 = require("../logger/loggerFunction");
-const axiosConfig = {};
+const serviceUrl = "http://ec2-34-238-114-89.compute-1.amazonaws.com:3000/";
+const axiosConfig = { baseURL: serviceUrl };
 const axiosInstance = axios_1.default.create(axiosConfig);
 exports.default = {
     //GET<root>/<api>: Busca todas as disciplinas que estão cadastradas ou com os campos informados
@@ -32,18 +34,18 @@ exports.default = {
                     body: request.body,
                     params: request.params,
                 });
-                const query = request.query;
-                const disciplines = yield Discipline_1.default.find(query);
-                if (disciplines) {
+                //const query: QueryFindOptions = request.query;
+                //const disciplines = await disciplineRepository.find(query);
+                if (DisciplineYup_1.default) {
                     (0, loggerFunction_1.loggerResponse)({
                         method: "GetAllOrQuery",
                         action: "Buscar disciplinas com query ou não",
                         url: request.url,
-                        response: disciplines_view_1.default.renderMany(disciplines),
+                        response: disciplines_view_1.default.renderMany(DisciplineYup_1.default),
                     });
                     return response
                         .status(200)
-                        .json(disciplines_view_1.default.renderMany(disciplines));
+                        .json(disciplines_view_1.default.renderMany(DisciplineYup_1.default));
                 }
                 (0, loggerFunction_1.loggerBeforeReturn)({ message: "Não há disciplinas cadastradas" });
                 return response.status(204).json("Não há disciplinas cadastradas");

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import discipline_view from "../view/disciplines_view";
+import disciplines_view from "../view/disciplines_view";
 import disciplineRepository from "../model/Discipline";
 import Axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { InterfaceDiscipline } from "../interfaces/discipline";
@@ -13,7 +13,8 @@ import {
   loggerBeforeReturn,
 } from "../logger/loggerFunction";
 
-const axiosConfig: AxiosRequestConfig = {};
+const serviceUrl = "http://ec2-34-238-114-89.compute-1.amazonaws.com:3000/";
+const axiosConfig: AxiosRequestConfig = { baseURL: serviceUrl };
 const axiosInstance: AxiosInstance = Axios.create(axiosConfig);
 
 export default {
@@ -36,12 +37,12 @@ export default {
           method: "GetAllOrQuery",
           action: "Buscar disciplinas com query ou não",
           url: request.url,
-          response: discipline_view.renderMany(disciplines),
+          response: disciplines_view.renderMany(disciplines),
         });
 
         return response
           .status(200)
-          .json(discipline_view.renderMany(disciplines));
+          .json(disciplines_view.renderMany(disciplines));
       }
 
       loggerBeforeReturn({ message: "Não há disciplinas cadastradas" });
@@ -83,22 +84,22 @@ export default {
             method: "GET",
             action: "Buscar disciplinas por id",
             url: request.url,
-            response: discipline_view.renderWithExpandsTurma(findOne, data),
+            response: disciplines_view.renderWithExpandsTurma(findOne, data),
           });
 
           return response
             .status(200)
-            .json(discipline_view.renderWithExpandsTurma(findOne, data));
+            .json(disciplines_view.renderWithExpandsTurma(findOne, data));
         }
 
         loggerResponse({
           method: "GET",
           action: "Buscar disciplinas por id",
           url: request.url,
-          response: discipline_view.render(findOne),
+          response: disciplines_view.render(findOne),
         });
 
-        return response.status(200).json(discipline_view.render(findOne));
+        return response.status(200).json(disciplines_view.render(findOne));
       } else {
         loggerBeforeReturn({ message: "Objeto não encontrado encontrado" });
         return response.status(404).send("Objeto não encontrado encontrado");
@@ -176,11 +177,11 @@ export default {
         action: "Registra uma nova disciplina",
         url: request.url,
         response: findOne
-          ? discipline_view.render(findOne)
-          : discipline_view.render(discipline),
+          ? disciplines_view.render(findOne)
+          : disciplines_view.render(discipline),
       });
 
-      return response.status(201).json(discipline_view.render(discipline));
+      return response.status(201).json(disciplines_view.render(discipline));
     } catch (error) {
       loggerBeforeReturn({ message: "Falha no servidor" });
       return response.status(500).send("Falha no servidor:" + error);
@@ -251,10 +252,10 @@ export default {
         method: "PUT",
         action: "Atualiza a disciplina com o id",
         url: request.url,
-        response: discipline_view.render(discipline),
+        response: disciplines_view.render(discipline),
       });
 
-      return response.status(200).json(discipline_view.render(discipline));
+      return response.status(200).json(disciplines_view.render(discipline));
     } catch (error) {
       loggerBeforeReturn({ message: "Falha no servidor: " });
       return response.status(500).send("Falha no servidor: " + error);
@@ -327,10 +328,10 @@ export default {
         method: "PATCH",
         action: "Atualiza parcialmente a disciplina com o id",
         url: request.url,
-        response: discipline_view.render(findOne),
+        response: disciplines_view.render(findOne),
       });
 
-      return response.status(200).json(discipline_view.render(findOne));
+      return response.status(200).json(disciplines_view.render(findOne));
     } catch (error) {
       loggerBeforeReturn({ message: "Falha no servidor: " });
       return response.status(500).send("Falha no servidor:" + error);
