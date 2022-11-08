@@ -3,7 +3,7 @@
       "target": "es2016",                                  
       "lib": ["es6"],                                      
       "module": "commonjs",
-      "rootDir": "backend",
+      "rootDir": "keycloak",
       "resolveJsonModule": true,
       "allowJs": false,
       "outDir": "build",
