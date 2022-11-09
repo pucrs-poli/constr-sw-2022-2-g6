@@ -102,6 +102,7 @@ class Router {
         this.createRoute("/users/:id", HTTPMethod.DELETE, controller.deleteUser, Authorization.ACCESS_TOKEN);
         //diciplinas
         this.createRoute("/Diciplina", HTTPMethod.GET, disciplines.getAllOrQuery, Authorization.NO_ACCESS_TOKEN);
+        this.createRoute("/DiciplineP", HTTPMethod.POST, disciplines.postDiciplina, Authorization.NO_ACCESS_TOKEN);
     }
 }
 exports.default = Router;

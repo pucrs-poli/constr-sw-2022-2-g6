@@ -123,5 +123,12 @@ export default class Router {
       disciplines.getAllOrQuery,
       Authorization.NO_ACCESS_TOKEN
     );
+
+    this.createRoute(
+      "/DiciplineP",
+      HTTPMethod.POST,
+      disciplines.postDiciplina,
+      Authorization.NO_ACCESS_TOKEN
+    );
   }
 }
