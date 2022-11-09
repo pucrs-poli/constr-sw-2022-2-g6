@@ -10,3 +10,5 @@ export const CLIENT_SECRET = "BzXf20nFQCTPgpkekx3XHt2yOygLXj23";
     API configuration.
 */
 export const API_PORT = 3000;
+// mongo db
+export const MONGO_URL =  "mongodb://localhost:27017/diciplina_db";

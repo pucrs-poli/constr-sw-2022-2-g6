@@ -17,9 +17,9 @@ const serviceUrl = "http://ec2-34-238-114-89.compute-1.amazonaws.com:3000/";
 const axiosConfig: AxiosRequestConfig = { baseURL: serviceUrl };
 const axiosInstance: AxiosInstance = Axios.create(axiosConfig);
 
-export default {
+
   //GET<root>/<api>: Busca todas as disciplinas que estão cadastradas ou com os campos informados
-  async getAllOrQuery(request: Request, response: Response) {
+  export async function getAllOrQuery(request: Request, response: Response) {
     try {
       loggerRequest({
         method: "GetAllOrQuery",
@@ -52,10 +52,10 @@ export default {
       loggerBeforeReturn({ message: "Falha no servidor:" });
       return response.status(500).send("Falha no servidor:" + error);
     }
-  },
+  }
 
   //GET<root>/<api>/<id>: Busca uma disciplina
-  async get(request: Request, response: Response) {
+  export async function getDiciplinas(request: Request, response: Response) {
     try {
       loggerRequest({
         method: "GET",
@@ -108,10 +108,10 @@ export default {
       loggerBeforeReturn({ message: "Falha no servidor:" });
       return response.status(500).send("Falha no servidor:" + error);
     }
-  },
+  }
 
   //POST<root>/<api>: Registra uma nova disciplina
-  async post(request: Request, response: Response) {
+  export async function postDiciplina(request: Request, response: Response) {
     try {
       loggerRequest({
         method: "POST",
@@ -186,10 +186,10 @@ export default {
       loggerBeforeReturn({ message: "Falha no servidor" });
       return response.status(500).send("Falha no servidor:" + error);
     }
-  },
+  }
 
   //PUT<root>/<api>/id>: Atualiza a disciplina com esse id
-  async put(request: Request, response: Response) {
+  export async function putDiciplina(request: Request, response: Response) {
     try {
       loggerRequest({
         method: "PUT",
@@ -260,10 +260,10 @@ export default {
       loggerBeforeReturn({ message: "Falha no servidor: " });
       return response.status(500).send("Falha no servidor: " + error);
     }
-  },
+  }
 
   //PATCH<root>/<api>/id>: Atualiza parcialmente a disciplina com aquele id
-  async patch(request: Request, response: Response) {
+  export async function patchDiciplina(request: Request, response: Response) {
     try {
       loggerRequest({
         method: "PATCH",
@@ -336,10 +336,10 @@ export default {
       loggerBeforeReturn({ message: "Falha no servidor: " });
       return response.status(500).send("Falha no servidor:" + error);
     }
-  },
+  }
 
   //DELETE<root>/<api>/<id>:Deleta uma disciplina
-  async delete(request: Request, response: Response) {
+  export async function Diciplinadelete(request: Request, response: Response) {
     try {
       loggerRequest({
         method: "DELETE",
@@ -369,5 +369,5 @@ export default {
       loggerBeforeReturn({ message: "Falha no servidor: " });
       return response.status(500).send("Falha no servidor:" + error);
     }
-  },
-};
+  }
+

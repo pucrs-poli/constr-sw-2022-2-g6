@@ -1,5 +1,6 @@
 import { Express, Request, Response } from "express";
 import * as controller from "../controllers/controller";
+import * as disciplines from "../controllers/DisciplinesController";
 import { checkAccessToken } from "../middlewares/middleware";
 
 enum HTTPMethod {
@@ -113,6 +114,14 @@ export default class Router {
       HTTPMethod.DELETE,
       controller.deleteUser,
       Authorization.ACCESS_TOKEN
+    );
+
+     //diciplinas
+    this.createRoute(
+      "/Diciplina",
+      HTTPMethod.GET,
+      disciplines.getAllOrQuery,
+      Authorization.NO_ACCESS_TOKEN
     );
   }
 }

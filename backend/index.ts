@@ -4,6 +4,7 @@ import swaggerUi from "swagger-ui-express";
 import swaggerDocs from "./docs/swagger.json";
 import { API_PORT } from "./config";
 import Router from "./routes/routes";
+import mongoose from "mongoose";
 
 const app = express();
 app.use(express.json());
@@ -14,6 +15,16 @@ const SWAGGER_ENDPOINT = `http://localhost:${API_PORT}/api-docs`;
 
 const router = new Router(app);
 router.setupRoutes();
+
+mongoose.connect("mongodb://localhost:27017/diciplina_db", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log("Connected to the database!");
+}).catch(err => {
+  console.log("Cannot connect to the database!", err);
+  process.exit();
+});
 
 app.listen(API_PORT, () => {
   console.log(`Backend running on port ${API_PORT}.\n`);

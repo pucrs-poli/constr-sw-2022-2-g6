@@ -24,6 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const controller = __importStar(require("../controllers/controller"));
+const disciplines = __importStar(require("../controllers/DisciplinesController"));
 const middleware_1 = require("../middlewares/middleware");
 var HTTPMethod;
 (function (HTTPMethod) {
@@ -99,6 +100,8 @@ class Router {
         this.createRoute("/users/:id", HTTPMethod.PUT, controller.updateUser, Authorization.ACCESS_TOKEN);
         this.createRoute("/users/:id", HTTPMethod.PATCH, controller.updateUserPassword, Authorization.ACCESS_TOKEN);
         this.createRoute("/users/:id", HTTPMethod.DELETE, controller.deleteUser, Authorization.ACCESS_TOKEN);
+        //diciplinas
+        this.createRoute("/Diciplina", HTTPMethod.GET, disciplines.getAllOrQuery, Authorization.NO_ACCESS_TOKEN);
     }
 }
 exports.default = Router;
