@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Diciplinadelete = exports.patchDiciplina = exports.putDiciplina = exports.postDiciplina = exports.getDiciplinas = exports.getAllOrQuery = void 0;
+exports.Disciplinadelete = exports.patchDisciplina = exports.putDisciplina = exports.postDisciplina = exports.getDiciplinas = exports.getAllOrQuery = void 0;
 const disciplines_view_1 = __importDefault(require("../view/disciplines_view"));
 const Discipline_1 = __importDefault(require("../model/Discipline"));
 const axios_1 = __importDefault(require("axios"));
@@ -110,7 +110,7 @@ function getDiciplinas(request, response) {
 }
 exports.getDiciplinas = getDiciplinas;
 //POST<root>/<api>: Registra uma nova disciplina
-function postDiciplina(request, response) {
+function postDisciplina(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             (0, loggerFunction_1.loggerRequest)({
@@ -171,9 +171,9 @@ function postDiciplina(request, response) {
         }
     });
 }
-exports.postDiciplina = postDiciplina;
+exports.postDisciplina = postDisciplina;
 //PUT<root>/<api>/id>: Atualiza a disciplina com esse id
-function putDiciplina(request, response) {
+function putDisciplina(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             (0, loggerFunction_1.loggerRequest)({
@@ -230,9 +230,9 @@ function putDiciplina(request, response) {
         }
     });
 }
-exports.putDiciplina = putDiciplina;
+exports.putDisciplina = putDisciplina;
 //PATCH<root>/<api>/id>: Atualiza parcialmente a disciplina com aquele id
-function patchDiciplina(request, response) {
+function patchDisciplina(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             (0, loggerFunction_1.loggerRequest)({
@@ -289,9 +289,9 @@ function patchDiciplina(request, response) {
         }
     });
 }
-exports.patchDiciplina = patchDiciplina;
+exports.patchDisciplina = patchDisciplina;
 //DELETE<root>/<api>/<id>:Deleta uma disciplina
-function Diciplinadelete(request, response) {
+function Disciplinadelete(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             (0, loggerFunction_1.loggerRequest)({
@@ -321,4 +321,4 @@ function Diciplinadelete(request, response) {
         }
     });
 }
-exports.Diciplinadelete = Diciplinadelete;
+exports.Disciplinadelete = Disciplinadelete;
