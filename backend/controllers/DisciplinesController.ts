@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-
 import disciplines_view from "../view/disciplines_view";
 import disciplineRepository from "../model/Discipline";
 import Axios, { AxiosInstance, AxiosRequestConfig } from "axios";
@@ -111,7 +110,7 @@ const axiosInstance: AxiosInstance = Axios.create(axiosConfig);
   }
 
   //POST<root>/<api>: Registra uma nova disciplina
-  export async function postDiciplina(request: Request, response: Response) {
+  export async function postDisciplina(request: Request, response: Response) {
     try {
       loggerRequest({
         method: "POST",
@@ -189,7 +188,7 @@ const axiosInstance: AxiosInstance = Axios.create(axiosConfig);
   }
 
   //PUT<root>/<api>/id>: Atualiza a disciplina com esse id
-  export async function putDiciplina(request: Request, response: Response) {
+  export async function putDisciplina(request: Request, response: Response) {
     try {
       loggerRequest({
         method: "PUT",
@@ -263,7 +262,7 @@ const axiosInstance: AxiosInstance = Axios.create(axiosConfig);
   }
 
   //PATCH<root>/<api>/id>: Atualiza parcialmente a disciplina com aquele id
-  export async function patchDiciplina(request: Request, response: Response) {
+  export async function patchDisciplina(request: Request, response: Response) {
     try {
       loggerRequest({
         method: "PATCH",
@@ -339,7 +338,7 @@ const axiosInstance: AxiosInstance = Axios.create(axiosConfig);
   }
 
   //DELETE<root>/<api>/<id>:Deleta uma disciplina
-  export async function Diciplinadelete(request: Request, response: Response) {
+  export async function Disciplinadelete(request: Request, response: Response) {
     try {
       loggerRequest({
         method: "DELETE",
