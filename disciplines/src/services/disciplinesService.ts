@@ -18,17 +18,17 @@ export async function create(discipline: IDiscipline) {
   return await Discipline.create(discipline);
 }
 
-export async function addDiscipline(
-  disciplineId: Types.ObjectId
-) {
-  const discipline = await getById(disciplineId.toString());
-  if (discipline) {
-    discipline.push(disciplineId);
-    await discipline.save();
-  } else {
-    throw new Error("discipline not found.");
-  }
-}
+// export async function addDiscipline(
+//   disciplineId: Types.ObjectId
+// ) {
+//   const discipline = await getById(disciplineId.toString());
+//   if (discipline) {
+//     discipline.push(disciplineId);
+//     await discipline.save();
+//   } else {
+//     throw new Error("discipline not found.");
+//   }
+// }
 
 export async function updateById(id: string, discipline: IDiscipline) {
   return await Discipline.findByIdAndUpdate(id, discipline);

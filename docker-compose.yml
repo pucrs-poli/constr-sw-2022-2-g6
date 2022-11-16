@@ -54,7 +54,7 @@ services:
     environment:
       - KEYCLOAK_API_HOST=host.docker.internal
       - KEYCLOAK_API_PORT=3000
-      - MONGODB_HOST=host.docker.internal
+      - MONGODB_HOST=mongo
       - MONGODB_PORT=27017
       - MONGODB_USER=admin
       - MONGODB_PASSWORD=a12345678

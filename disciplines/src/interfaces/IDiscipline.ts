@@ -7,4 +7,5 @@ export default interface IDiscipline {
     syllabus: string;
     requisite: Types.ObjectId;  //( type: Schema.Types.ObjectID, ref: 'Discipline')
     semester: Types.ObjectId;   //(type: Schema.Types.ObjectID, ref: 'Discipline')
+    discipline: Array<Types.ObjectId>;
 }

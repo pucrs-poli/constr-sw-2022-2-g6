@@ -30,6 +30,6 @@ const disciplineSchema = new mongoose.Schema<IDiscipline>({
   },
 );
 
-const Disciplines = mongoose.model<IDiscipline>("Discipline", disciplineSchema);
+const Discipline = mongoose.model<IDiscipline>("Discipline", disciplineSchema);
 
-export default Disciplines;
+export default Discipline;

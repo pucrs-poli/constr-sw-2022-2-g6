@@ -1,7 +1,7 @@
 {
   "name": "constr-sw-2022-2-g6",
-  "version": "1.0.0",
-  "description": "Trabalho 1 grupo Constr SW Grupo 6",
+  "version": "2.0.0",
+  "description": "Disciplines API",
   "main": "build/index.js",
   "scripts": {
     "start": "npx tsc && node build/index.js"
