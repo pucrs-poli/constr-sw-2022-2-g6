@@ -1,23 +1,32 @@
 import { Response } from "express";
 
-export class APIError extends Error {
-  private statusCode: number;
-  private error: string;
+type APIError = {
+  status: number;
+  message: string;
+};
 
-  constructor(statusCode: number, error: string) {
-    super();
-    this.statusCode = statusCode;
-    this.error = error;
-  }
-
-  public getStatusCode(): number {
-    return this.statusCode;
-  }
-  public getError(): string {
-    return this.error;
-  }
+export class APIErrors {
+  public static INVALID_OR_MISSING_ACCESS_TOKEN: APIError = {
+    status: 401,
+    message: "Invalid or missing access token",
+  };
+  public static NOT_FOUND: APIError = {
+    status: 404,
+    message: "Not Found",
+  };
+  public static INTERNAL_SERVER_ERROR: APIError = {
+    status: 500,
+    message: "Internal Server Error",
+  };
+  public static INPUT_VALIDATION_ERROR: APIError = {
+    status: 400,
+    message: "Input Validation Error",
+  };
 }
 
-export function handleError(res: Response, err: APIError): void {
-  res.status(err.getStatusCode()).json({ error: err.getError() });
+
+export function sendError(res: Response, error: APIError, moreInfo?: string) {
+  res
+  .status(error.status)
+  .json({ error: `${error.message}${moreInfo ? `: ${moreInfo}` : ""}.` });
 }

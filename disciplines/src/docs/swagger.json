@@ -1,36 +1,33 @@
 {
     "swagger": "2.0",
     "info": {
-      "version": "1.0.0",
-      "title": "Keycloak REST API",
-      "description": "REST API that makes use of Keycloak to manage users."
+      "version": "1.2.0",
+      "title": "Disciplines REST API",
+      "description": "REST API to manage disciplines."
     },
-    "host": "localhost:3000",
+    "host": "localhost:8086",
     "basePath": "/",
     "schemes": ["http"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "tags": [
       {
-        "name": "Login",
-        "description": "Login as an administrator."
-      },
-      {
-        "name": "Users",
-        "description": "Fetch/Create/Update users."
+        "name": "Disciplines",
+        "description": "Fetch/Create/Update disciplines."
       }
     ],
     "paths": {
-      "/login": {
-        "post": {
-          "tags": ["Login"],
-          "description": "Endpoint to login as an administrator.",
+      "/discipline": {
+        "get": {
+          "tags": ["Disciplines"],
+          "description": "Endpoint to fetch all disciplines.",
           "parameters": [
             {
               "name": "body",
-              "in": "body",
+              "description": "An admin access token",
+              "in": "header",
               "schema": {
-                "$ref": "#/components/schemas/LoginRequestBody"
+                "$ref": "#/components/schemas/AccessToken"
               }
             }
           ],
@@ -38,111 +35,124 @@
             "200": {
               "description": "Ok.",
               "schema": {
-                "$ref": "#/components/schemas/LoginResponseBody"
+                "$ref": "#/components/schemas/AccessToken"
               }
-            },
-            "400": {
-              "description": "Bad Request."
-            }
-          }
-        }
-      },
-      "/users": {
-        "get": {
-          "tags": ["Users"],
-          "description": "Endpoint to fetch all users.",
-          "responses": {
-            "200": {
-              "description": "Ok."
-            },
-            "400": {
-              "description": "Bad Request."
             },
             "401": {
               "description": "Unauthorized (Not Logged In)."
             }
           }
-        },
-        "post": {
-          "tags": ["Users"],
-          "description": "Endpoint to create an user.",
+        }
+      },
+      "post": {
+        "tags": ["Users"],
+        "description": "Endpoint to fetch all users.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "description": "An admin access token",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AccessToken"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema":{
+              "$ref": "#/components/schemas/DisciplineRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "schema": {
+              "$ref": "#/components/schemas/DisciplineRequestBody"
+            }
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "/discipline/{id}": {
+        "get": {
+          "tags": ["Disciplines"],
+          "description": "Endpoint to fetch a discipline by ID.",
           "parameters": [
             {
-              "name": "body",
-              "in": "body",
+              "name": "Authorization",
+              "description": "An admin access token.",
+              "in": "header",
+              "schema": {
+                "$ref": "#/components/schemas/AccessToken"
+              }
+            },
+            {
+              "name": "id",
+              "description": "A discipline ID.",
+              "in": "path",
+              "schema": {
+                "$ref": "#/components/schemas/MongoID"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Ok.",
               "schema": {
                 "$ref": "#/components/schemas/CreateUserRequestBody"
               }
-            }
-          ],
-          "responses": {
-            "201": {
-              "description": "Created.",
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
             },
             "400": {
               "description": "Bad Request."
-            },
-            "401": {
-              "description": "Unauthorized (Not Logged In)."
-            }
-          }
-        }
-      },
-      "/users/{id}": {
-        "get": {
-          "tags": ["Users"],
-          "description": "Endpoint to fetch an user by ID.",
-          "parameters": [
-            {
-              "name": "id",
-              "description": "An user ID.",
-              "in": "path",
-              "schema": {
-                "$ref": "#/components/schemas/UserID"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Ok.",
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
             },
             "401": {
               "description": "Unauthorized (Not Logged In)."
             },
             "404": {
-              "description": "User not found."
+              "description": "Discipline not found."
             }
           }
         },
         "put": {
-          "tags": ["Users"],
-          "description": "Endpoint to update an user.",
+          "tags": ["Disciplines"],
+          "description": "Endpoint to update a discipline.",
           "parameters": [
             {
+              "name": "Authorization",
+              "description": "An admin access token",
+              "in": "header",
+              "schema": {
+                "$ref": "#/components/schemas/AccessToken"
+              }
+            },
+            {
               "name": "id",
-              "description": "An user ID.",
+              "description": "A discipline ID",
               "in": "path",
               "schema": {
-                "$ref": "#/components/schemas/UserID"
+                "$ref": "#/components/schemas/MongoID"
               }
             },
             {
               "name": "body",
-              "in": "body",
+              "in": "path",
               "schema": {
-                "$ref": "#/components/schemas/CreateUserRequestBody"
+                "$ref": "#/components/schemas/DisciplineRequestBody"
               }
             }
           ],
           "responses": {
-            "204": {
-              "description": "Ok. No Content."
+            "200": {
+              "description": "Ok.",
+              "schema": {
+                "$ref": "#/components/schemas/DisciplineRequestBody"
+              }
             },
             "400": {
               "description": "Bad Request."
@@ -151,20 +161,28 @@
               "description": "Unauthorized (Not Logged In)."
             },
             "404": {
-              "description": "User not found."
+              "description": "Discipline not found."
             }
           }
         },
         "patch": {
-          "tags": ["Users"],
-          "description": "Endpoint to update the password of an user.",
+          "tags": ["Disciplines"],
+          "description": "Endpoint to update disciplines attributes.",
           "parameters": [
             {
+              "name": "Authorization",
+              "description": "An admin access token.",
+              "in": "header",
+              "schema": {
+                "$ref": "#/components/schemas/AccessToken"
+              }
+            },
+            {
               "name": "id",
-              "description": "An user ID.",
+              "description": "A discipline ID.",
               "in": "path",
               "schema": {
-                "$ref": "#/components/schemas/UserID"
+                "$ref": "#/components/schemas/MongoID"
               }
             },
             {
@@ -173,17 +191,20 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "password": {
-                    "type": "string",
-                    "example": "passwd-xyz-***"
+                  "attribute": {
+                    "type": "?",
+                    "example": "attribute-value"
                   }
                 }
               }
             }
           ],
           "responses": {
-            "204": {
-              "description": "Ok. No Content."
+            "200": {
+              "description": "Ok.",
+              "schema": {
+                "$ref": "#/components/schemas/DisciplineResponseBody"
+              }
             },
             "400": {
               "description": "Bad Request."
@@ -192,26 +213,37 @@
               "description": "Unauthorized (Not Logged In)."
             },
             "404": {
-              "description": "User not found."
+              "description": "Discipline not found."
             }
           }
         },
         "delete": {
-          "tags": ["Users"],
-          "description": "Endpoint to delete an user.",
+          "tags": ["Disciplines"],
+          "description": "Endpoint to delete a discipline.",
           "parameters": [
             {
+              "name": "Authorization",
+              "description": "An admin access token.",
+              "in": "header",
+              "schema": {
+                "$ref": "#/components/schemas/AccessToken"
+              }
+            },
+            {
               "name": "id",
-              "description": "An user ID.",
+              "description": "A discipline ID.",
               "in": "path",
               "schema": {
-                "$ref": "#/components/schemas/UserID"
+                "$ref": "#/components/schemas/MongoID"
               }
             }
           ],
           "responses": {
-            "204": {
-              "description": "Ok. No Content."
+            "200": {
+              "description": "Ok.",
+              "schema": {
+                "$ref": "#/components/schemas/DisciplineResponseBody"
+              }
             },
             "400": {
               "description": "Bad Request."
@@ -220,7 +252,7 @@
               "description": "Unauthorized (Not Logged In)."
             },
             "404": {
-              "description": "User not found."
+              "description": "Discipline not found."
             }
           }
         }
@@ -228,99 +260,40 @@
     },
     "components": {
       "schemas": {
-        "UserID": {
+        "AccessToken": {
           "type": "string",
-          "example": "5e2052a2-1030-440a-a623-9095613d5c73"
+          "example": "Bearer <YOUR_TOKEN>"
         },
-        "User": {
+        "MongoID": {
+          "type": "string",
+          "example": "36c924ba73974253a5b672a65bf707ae"
+        },
+        "DisciplineRequestBody": {
           "type": "object",
           "properties": {
-            "sub": {
+            "id": {
               "type": "string",
-              "example": "36c924ba-7397-4253-a5b6-72a65bf707ae"
+              "example": "46504-04"
             },
-            "preferred_username": {
+            "name": {
               "type": "string",
-              "example": "EduardoArruda700"
+              "example": "Construção de Software"
             },
-            "given_name": {
-              "type": "string",
-              "example": "Eduardo"
-            },
-            "family_name": {
-              "type": "string",
-              "example": "Arruda"
-            },
-            "email": {
-              "type": "string",
-              "example": "arruda-professor@pucrs.br"
-            }
-          }
-        },
-        "LoginRequestBody": {
-          "type": "object",
-          "properties": {
-            "client_id": {
-              "type": "string",
-              "example": "grupo6"
-            },
-            "username": {
-              "type": "string",
-              "example": "admin"
-            },
-            "password": {
-              "type": "string",
-              "example": "a12345678"
-            },
-            "grant_type": {
-              "type": "string",
-              "example": "password"
-            }
-          }
-        },
-        "LoginResponseBody": {
-          "type": "object",
-          "properties": {
-            "token_type": {
-              "type": "string",
-              "example": "Bearer"
-            },
-            "access_token": {
-              "type": "string",
-              "example": "aBcDefGhIjKlMn..."
-            },
-            "expires_in": {
+            "credits": {
               "type": "number",
-              "example": 300
+              "example": "04"
             },
-            "refresh_token": {
+            "syllabus": {
               "type": "string",
-              "example": "aBcDefGhIjKlMnOp..."
+              "example": "Visão geral sobre os fundamentos de construção de software. Estudo de conceitos relacionados à reutilização de software.  Entendimento e exploração dos conceitos de frameworks, componentes e linhas de produtos de software. Conhecimento das arquiteturas dirigidas por modelos. Desenvolvimento e uso de ferramentas de reutilização de software."
             },
-            "refresh_expires_in": {
+            "requisites": {
+              "type": "string",
+              "example": "Fundamentos de programação"
+            },
+            "semester": {
               "type": "number",
-              "example": 1800
-            }
-          }
-        },
-        "CreateUserRequestBody": {
-          "type": "object",
-          "properties": {
-            "firstName": {
-              "type": "string",
-              "example": "Mike"
-            },
-            "lastName": {
-              "type": "string",
-              "example": "Smith"
-            },
-            "email": {
-              "type": "string",
-              "example": "mike.smith@gmail.com"
-            },
-            "username": {
-              "type": "string",
-              "example": "MikeSmith_bla"
+              "example": "04"
             }
           }
         }

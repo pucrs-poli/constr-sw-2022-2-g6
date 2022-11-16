@@ -1,5 +1,6 @@
 import { Types } from "mongoose";
-import Discipline from "../disciplines_111/src/models/Discipline";
+import IDiscipline from "../interfaces/IDiscipline";
+import Discipline from "../models/Discipline"
 
 export async function getAll(attributes: object) {
   if (attributes) {
@@ -18,7 +19,7 @@ export async function create(discipline: IDiscipline) {
 }
 
 export async function addDiscipline(
-  disciplineId: Types.ObjectId,
+  disciplineId: Types.ObjectId
 ) {
   const discipline = await getById(disciplineId.toString());
   if (discipline) {

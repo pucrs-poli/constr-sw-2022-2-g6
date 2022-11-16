@@ -1,14 +1,35 @@
+import axios from "axios";
 import { NextFunction, Request, Response } from "express";
-import GlobalToken from "../token/token";
+import { KEYCLOAK_API_HOST, KEYCLOAK_API_PORT } from "../config";
+import { APIErrors, sendError } from "../errors/errors";
 
-export function checkAccessToken(
-  _req: Request,
+const KEYCLOAK_INTEGRATION = false;
+
+const VALIDATE_USER_ENDPOINT = `http://${KEYCLOAK_API_HOST}:${KEYCLOAK_API_PORT}/users/validate`;
+
+export async function checkAccessToken(
+  req: Request,
   res: Response,
   next: NextFunction
 ) {
-  const accessToken = GlobalToken.getAccessToken();
-  if (!accessToken) {
-    return res.status(401).send("Unauthorized. Not logged in.");
+  if (!KEYCLOAK_INTEGRATION) {
+    next();
+    return;
   }
-  next();
+  const accessToken = req.headers.authorization as string;
+  if (!accessToken || !accessToken.startsWith("Bearer ")) {
+    sendError(res, APIErrors.INVALID_OR_MISSING_ACCESS_TOKEN);
+    return;
+  }
+  try {
+    await axios.post(VALIDATE_USER_ENDPOINT, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
+    next();
+  } catch (error) {
+    console.error(error);
+    sendError(res, APIErrors.INVALID_OR_MISSING_ACCESS_TOKEN);
+  }
 }

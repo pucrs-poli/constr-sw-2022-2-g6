@@ -1,5 +1,5 @@
 import { Express, Request, Response } from "express";
-import * as controller from "../controllers/disciplineController";
+import * as disciplineController from "../controllers/disciplineController";
 import { checkAccessToken } from "../middlewares/middleware";
 
 enum HTTPMethod {
@@ -73,45 +73,39 @@ export default class Router {
   */
   public setupRoutes(): void {
     this.createRoute(
-      "/login",
-      HTTPMethod.POST,
-      controller.login,
+      "/discipline",
+      HTTPMethod.GET,
+      disciplineController.getAll,
       Authorization.NO_ACCESS_TOKEN
     );
     this.createRoute(
-      "/users",
+      "/building:id",
       HTTPMethod.GET,
-      controller.getAllUsers,
+      disciplineController.getById,
       Authorization.ACCESS_TOKEN
     );
     this.createRoute(
-      "/users/:id",
-      HTTPMethod.GET,
-      controller.getUserById,
-      Authorization.ACCESS_TOKEN
-    );
-    this.createRoute(
-      "/users",
+      "/discipline",
       HTTPMethod.POST,
-      controller.createUser,
+      disciplineController.create,
       Authorization.ACCESS_TOKEN
     );
     this.createRoute(
-      "/users/:id",
+      "/discipline:id",
       HTTPMethod.PUT,
-      controller.updateUser,
+      disciplineController.updateById,
       Authorization.ACCESS_TOKEN
     );
     this.createRoute(
-      "/users/:id",
+      "/disciplines/:id",
       HTTPMethod.PATCH,
-      controller.updateUserPassword,
+      disciplineController.patchById,
       Authorization.ACCESS_TOKEN
     );
     this.createRoute(
-      "/users/:id",
+      "/disciplines/:id",
       HTTPMethod.DELETE,
-      controller.deleteUser,
+      disciplineController.deleteById,
       Authorization.ACCESS_TOKEN
     );
   }

@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+
+
 import {
   MONGODB_HOST,
   MONGODB_PASSWORD,
@@ -6,6 +7,8 @@ import {
   MONGODB_USER,
 } from "../config";
 import Disciplines from "../models/Discipline";
+
+import mongoose from "mongoose";
 
 
 const DATABASE_NAME = "disciplines";
