@@ -127,7 +127,7 @@ export default class Router {
     this.createRoute(
       "/DiciplineP",
       HTTPMethod.POST,
-      disciplines.postDiciplina,
+      disciplines.postDisciplina,
       Authorization.NO_ACCESS_TOKEN
     );
   }
