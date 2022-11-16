@@ -17,4 +17,4 @@ export const MONGODB_PASSWORD = process.env.MONGODB_PASSWORD || "a12345678";
 /*
     API configuration.
 */
-export const API_PORT = parseInt(process.env.API_PORT || "8081");
+export const API_PORT = parseInt(process.env.API_PORT || "8086");
