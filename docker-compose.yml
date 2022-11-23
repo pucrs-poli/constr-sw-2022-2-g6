@@ -63,7 +63,7 @@ services:
       - constr-sw-2022-2
     depends_on:
       - keycloak_api
-      - mongodb
+      - mongo
   # {api}-api:
     # container-name: {api}-api
     # ...
