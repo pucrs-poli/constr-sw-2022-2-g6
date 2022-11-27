@@ -12,5 +12,13 @@ Pra rodar o swagger executar o comando ```npm start``` na raiz do projeto e aces
 
 **É necessário criar um realm, idealmente importando o arquivo fornecido pelo professor que já vem pronto. Existe uma cópia do arquivo json para importar lá na interface do keycloak na pasta utils deste repositório.**
 
+**Também é preciso criar os seguintes volumes usando o docker:**
+```bash 
+    docker volume create keycloak-data
+```
+```bash 
+    docker volume create mongodb-data
+```
+
 Feito isso, deve ser criado um client e um usuário administrador e alterar o *CLIENT_SECRET* no arquivo /src/keycloak/config.ts e trocar pelo secret gerado na criação do usuário no keycloak.
 
