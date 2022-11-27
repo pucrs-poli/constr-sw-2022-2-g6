@@ -7,10 +7,10 @@ const disciplineSchema = new mongoose.Schema<IDiscipline>({
     id: {type: number, required: true}, //codigo da disciplina
     cod: {type: String, required: true},
     name: {type: String, required: true},
-    credits: {type: Number, required: true},
-    valid: {type: String, required: true},
-    workload: {type: number, require: true},
-    goals: {type: String, require: true},
+    credits: {type: Number, required: true}, //creditos 
+    valid: {type: String, required: true}, //semestre validade 
+    workload: {type: number, require: true}, //carga horária 
+    goals: {type: String, require: true}, //objetivos da disciplins
     syllabus: {type: String,required: true}, //ementa da disciplina
     //requisite: {type: mongoose.Schema.Types.ObjectId, ref: 'Discipline'},
     //semester: {type: mongoose.Schema.Types.ObjectId, ref: 'Curriculum'}, //validade
