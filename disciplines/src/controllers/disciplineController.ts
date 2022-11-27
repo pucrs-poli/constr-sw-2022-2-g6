@@ -10,8 +10,8 @@ export async function getAll(req: Request, res: Response) {
     return;
   }
   try {
-    const buildings = await disciplinesService.getAll(req.query);
-    res.status(200).send(buildings);
+    const disciplines = await disciplinesService.getAll(req.query);
+    res.status(200).send(disciplines);
   } catch (error) {
     console.error(error);
     sendError(res, APIErrors.INTERNAL_SERVER_ERROR);

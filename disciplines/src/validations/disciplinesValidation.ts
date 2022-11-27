@@ -1,9 +1,16 @@
 import Joi from "joi";
+import mongoose from "mongoose";
 
-export default class BuildingsValidations {
+export default class DisciplinesValidations {
   public static GetById = Joi.string().hex().length(24).required();
   public static CreateOrUpdate = Joi.object({
+    id: Joi.string().required(),
     name: Joi.string().required(),
+    credits: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
+    syllabus: Joi.string().required(),
+    requisite: Joi.string().required(),
+    semester: Joi.mongoose.Schema.Types.ObjectId
+    
     number: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
     address: Joi.object({
       street: Joi.string().required(),
