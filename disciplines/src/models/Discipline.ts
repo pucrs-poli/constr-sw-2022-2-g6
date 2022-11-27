@@ -4,12 +4,12 @@ import IDiscipline from "../interfaces/IDiscipline";
 
 
 const disciplineSchema = new mongoose.Schema<IDiscipline>({
-    id: {type: number, required: true}, //codigo da disciplina
+    id: {type: mongoose.Schema.Types.Number, required: true}, //codigo da disciplina
     cod: {type: String, required: true},
     name: {type: String, required: true},
     credits: {type: Number, required: true}, //creditos 
     valid: {type: String, required: true}, //semestre validade 
-    workload: {type: number, require: true}, //carga horária 
+    workload: {type: Number, require: true}, //carga horária 
     goals: {type: String, require: true}, //objetivos da disciplins
     syllabus: {type: String,required: true}, //ementa da disciplina
     //requisite: {type: mongoose.Schema.Types.ObjectId, ref: 'Discipline'},
