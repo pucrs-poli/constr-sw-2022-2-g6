@@ -15,7 +15,6 @@ export async function getById(id: string) {
   return await Discipline.findById(id).populate("discipline");
 }
 
-
 export async function create(discipline: IDiscipline) {
   const createdDiscipline = await Discipline.create(discipline);
   return createdDiscipline;

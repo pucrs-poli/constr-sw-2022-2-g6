@@ -25,9 +25,9 @@ export async function getById(req: Request, res: Response) {
     return;
   }
   try {
-    const building = await disciplinesService.getById(req.params.id);
-    if (building) {
-      res.status(200).send(building);
+    const discipline = await disciplinesService.getById(req.params.id);
+    if (discipline) {
+      res.status(200).send(discipline);
     } else {
       sendError(res, APIErrors.NOT_FOUND);
     }
@@ -44,8 +44,8 @@ export async function create(req: Request, res: Response) {
     return;
   }
   try {
-    const building = await disciplinesService.create(req.body);
-    res.status(201).send(building);
+    const discipline = await disciplinesService.create(req.body);
+    res.status(201).send(discipline);
   } catch (error) {
     console.error(error);
     sendError(res, APIErrors.INTERNAL_SERVER_ERROR);
