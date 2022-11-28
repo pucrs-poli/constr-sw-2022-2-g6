@@ -42,40 +42,40 @@
               "description": "Unauthorized (Not Logged In)."
             }
           }
-        }
-      },
-      "post": {
-        "tags": ["Disciplines"],
-        "description": "Endpoint to create disciplines..",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "description": "An admin access token",
-            "in": "header",
-            "schema": {
-              "$ref": "#/components/schemas/AccessToken"
+        },
+        "post": {
+          "tags": ["Disciplines"],
+          "description": "Endpoint to create disciplines..",
+          "parameters": [
+            {
+              "name": "Authorization",
+              "description": "An admin access token",
+              "in": "header",
+              "schema": {
+                "$ref": "#/components/schemas/AccessToken"
+              }
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "schema":{
+                "$ref": "#/components/schemas/DisciplineRequestBody"
+              }
             }
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema":{
-              "$ref": "#/components/schemas/DisciplineRequestBody"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created.",
+              "schema": {
+                "$ref": "#/components/schemas/DisciplineRequestBody"
+              }
+            },
+            "400": {
+              "description": "Bad Request."
+            },
+            "500": {
+              "description": "Internal Server Error"
             }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created.",
-            "schema": {
-              "$ref": "#/components/schemas/DisciplineRequestBody"
-            }
-          },
-          "400": {
-            "description": "Bad Request."
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },

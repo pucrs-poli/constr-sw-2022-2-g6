@@ -79,7 +79,7 @@ export default class Router {
       Authorization.NO_ACCESS_TOKEN
     );
     this.createRoute(
-      "/building:id",
+      "/discipline:id",
       HTTPMethod.GET,
       disciplineController.getById,
       Authorization.ACCESS_TOKEN
