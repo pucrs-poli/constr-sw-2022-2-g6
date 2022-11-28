@@ -56,9 +56,17 @@
               }
             },
             {
+              "name": "id",
+              "description": "A discipline ID",
+              "in": "path",
+              "schema": {
+                "$ref": "#/components/schemas/MongoID"
+              }
+            },
+            {
               "name": "body",
-              "in": "body",
-              "schema":{
+              "in": "path",
+              "schema": {
                 "$ref": "#/components/schemas/DisciplineRequestBody"
               }
             }
@@ -67,7 +75,7 @@
             "201": {
               "description": "Created.",
               "schema": {
-                "$ref": "#/components/schemas/DisciplineRequestBody"
+                "$ref": "#/components/schemas/DisciplineResponseBody"
               }
             },
             "400": {
@@ -302,10 +310,43 @@
             "syllabus": {
               "type": "string",
               "example": "Visão geral sobre os fundamentos de construção de software. Estudo de conceitos relacionados à reutilização de software.  Entendimento e exploração dos conceitos de frameworks, componentes e linhas de produtos de software. Conhecimento das arquiteturas dirigidas por modelos. Desenvolvimento e uso de ferramentas de reutilização de software."
+            }
+          }
+        },
+        "DisciplineResponseBody": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": "46504-04"
             },
-            "requisites": {
+            "cod": {
               "type": "string",
-              "example": "Fundamentos de programação"
+              "example": "46504-04"
+            },
+            "name": {
+              "type": "string",
+              "example": "Construção de Software"
+            },
+            "credits": {
+              "type": "number",
+              "example": "04"
+            },
+            "valid": {
+              "type": "string",
+              "example": "2022/2"
+            },
+            "workload": {
+              "type": "number",
+              "example": "60"
+            },
+            "goals": {
+              "type": "string",
+              "example": "Objetivos da disciplina é fornecer ao aluno os conceitos e fundamentos de construção de software e a capacidade de modelar e construir software de forma limpa e reutilizável."
+            },
+            "syllabus": {
+              "type": "string",
+              "example": "Visão geral sobre os fundamentos de construção de software. Estudo de conceitos relacionados à reutilização de software.  Entendimento e exploração dos conceitos de frameworks, componentes e linhas de produtos de software. Conhecimento das arquiteturas dirigidas por modelos. Desenvolvimento e uso de ferramentas de reutilização de software."
             }
           }
         }
