@@ -1,355 +1,355 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "version": "1.2.0",
-      "title": "Disciplines REST API",
-      "description": "REST API to manage disciplines."
-    },
-    "host": "localhost:8086",
-    "basePath": "/",
-    "schemes": ["http"],
-    "consumes": ["application/json"],
-    "produces": ["application/json"],
-    "tags": [
-      {
-        "name": "Disciplines",
-        "description": "Fetch/Create/Update disciplines."
-      }
-    ],
-    "paths": {
-      "/discipline": {
-        "get": {
-          "tags": ["Disciplines"],
-          "description": "Endpoint to fetch all disciplines.",
-          "parameters": [
-            {
-              "name": "body",
-              "description": "An admin access token",
-              "in": "header",
-              "schema": {
-                "$ref": "#/components/schemas/AccessToken"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Ok.",
-              "schema": {
-                "$ref": "#/components/schemas/AccessToken"
-              }
-            },
-            "401": {
-              "description": "Unauthorized (Not Logged In)."
+  "swagger": "2.0",
+  "info": {
+    "version": "1.2.0",
+    "title": "Disciplines REST API",
+    "description": "REST API to manage disciplines."
+  },
+  "host": "localhost:8086",
+  "basePath": "/",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "tags": [
+    {
+      "name": "Disciplines",
+      "description": "Fetch/Create/Update/Delete disciplines."
+    }
+  ],
+  "paths": {
+    "/discipline": {
+      "get": {
+        "tags": ["Disciplines"],
+        "description": "Endpoint to fetch all disciplines.",
+        "parameters": [
+          {
+            "name": "body",
+            "description": "An admin access token",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AccessToken"
             }
           }
-        },
-        "post": {
-          "tags": ["Disciplines"],
-          "description": "Endpoint to create disciplines..",
-          "parameters": [
-            {
-              "name": "Authorization",
-              "description": "An admin access token",
-              "in": "header",
-              "schema": {
-                "$ref": "#/components/schemas/AccessToken"
-              }
-            },
-            {
-              "name": "id",
-              "description": "A discipline ID",
-              "in": "path",
-              "schema": {
-                "$ref": "#/components/schemas/MongoID"
-              }
-            },
-            {
-              "name": "body",
-              "in": "path",
-              "schema": {
-                "$ref": "#/components/schemas/DisciplineRequestBody"
-              }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok.",
+            "schema": {
+              "$ref": "#/components/schemas/AccessToken"
             }
-          ],
-          "responses": {
-            "201": {
-              "description": "Created.",
-              "schema": {
-                "$ref": "#/components/schemas/DisciplineResponseBody"
-              }
-            },
-            "400": {
-              "description": "Bad Request."
-            },
-            "500": {
-              "description": "Internal Server Error"
-            }
+          },
+          "401": {
+            "description": "Unauthorized (Not Logged In)."
           }
         }
       },
-      "/discipline/{id}": {
-        "get": {
-          "tags": ["Disciplines"],
-          "description": "Endpoint to fetch a discipline by ID.",
-          "parameters": [
-            {
-              "name": "Authorization",
-              "description": "An admin access token.",
-              "in": "header",
-              "schema": {
-                "$ref": "#/components/schemas/AccessToken"
-              }
-            },
-            {
-              "name": "id",
-              "description": "A discipline ID.",
-              "in": "path",
-              "schema": {
-                "$ref": "#/components/schemas/MongoID"
-              }
+      "post": {
+        "tags": ["Disciplines"],
+        "description": "Endpoint to create disciplines..",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "description": "An admin access token",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AccessToken"
             }
-          ],
-          "responses": {
-            "200": {
-              "description": "Ok.",
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserRequestBody"
-              }
-            },
-            "400": {
-              "description": "Bad Request."
-            },
-            "401": {
-              "description": "Unauthorized (Not Logged In)."
-            },
-            "404": {
-              "description": "Discipline not found."
+          },
+          {
+            "name": "id",
+            "description": "A discipline ID",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MongoID"
+            }
+          },
+          {
+            "name": "body",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/DisciplineRequestBody"
             }
           }
-        },
-        "put": {
-          "tags": ["Disciplines"],
-          "description": "Endpoint to update a discipline.",
-          "parameters": [
-            {
-              "name": "Authorization",
-              "description": "An admin access token",
-              "in": "header",
-              "schema": {
-                "$ref": "#/components/schemas/AccessToken"
-              }
-            },
-            {
-              "name": "id",
-              "description": "A discipline ID",
-              "in": "path",
-              "schema": {
-                "$ref": "#/components/schemas/MongoID"
-              }
-            },
-            {
-              "name": "body",
-              "in": "path",
-              "schema": {
-                "$ref": "#/components/schemas/DisciplineRequestBody"
-              }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "schema": {
+              "$ref": "#/components/schemas/DisciplineResponseBody"
             }
-          ],
-          "responses": {
-            "200": {
-              "description": "Ok.",
-              "schema": {
-                "$ref": "#/components/schemas/DisciplineRequestBody"
-              }
-            },
-            "400": {
-              "description": "Bad Request."
-            },
-            "401": {
-              "description": "Unauthorized (Not Logged In)."
-            },
-            "404": {
-              "description": "Discipline not found."
-            }
-          }
-        },
-        "patch": {
-          "tags": ["Disciplines"],
-          "description": "Endpoint to update disciplines attributes.",
-          "parameters": [
-            {
-              "name": "Authorization",
-              "description": "An admin access token.",
-              "in": "header",
-              "schema": {
-                "$ref": "#/components/schemas/AccessToken"
-              }
-            },
-            {
-              "name": "id",
-              "description": "A discipline ID.",
-              "in": "path",
-              "schema": {
-                "$ref": "#/components/schemas/MongoID"
-              }
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "attribute": {
-                    "type": "?",
-                    "example": "attribute-value"
-                  }
-                }
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Ok.",
-              "schema": {
-                "$ref": "#/components/schemas/DisciplineResponseBody"
-              }
-            },
-            "400": {
-              "description": "Bad Request."
-            },
-            "401": {
-              "description": "Unauthorized (Not Logged In)."
-            },
-            "404": {
-              "description": "Discipline not found."
-            }
-          }
-        },
-        "delete": {
-          "tags": ["Disciplines"],
-          "description": "Endpoint to delete a discipline.",
-          "parameters": [
-            {
-              "name": "Authorization",
-              "description": "An admin access token.",
-              "in": "header",
-              "schema": {
-                "$ref": "#/components/schemas/AccessToken"
-              }
-            },
-            {
-              "name": "id",
-              "description": "A discipline ID.",
-              "in": "path",
-              "schema": {
-                "$ref": "#/components/schemas/MongoID"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Ok.",
-              "schema": {
-                "$ref": "#/components/schemas/DisciplineResponseBody"
-              }
-            },
-            "400": {
-              "description": "Bad Request."
-            },
-            "401": {
-              "description": "Unauthorized (Not Logged In)."
-            },
-            "404": {
-              "description": "Discipline not found."
-            }
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "components": {
-      "schemas": {
-        "AccessToken": {
-          "type": "string",
-          "example": "Bearer <YOUR_TOKEN>"
-        },
-        "MongoID": {
-          "type": "string",
-          "example": "36c924ba73974253a5b672a65bf707ae"
-        },
-        "DisciplineRequestBody": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "number",
-              "example": "46504-04"
-            },
-            "cod": {
-              "type": "string",
-              "example": "46504-04"
-            },
-            "name": {
-              "type": "string",
-              "example": "Construção de Software"
-            },
-            "credits": {
-              "type": "number",
-              "example": "04"
-            },
-            "valid": {
-              "type": "string",
-              "example": "2022/2"
-            },
-            "workload": {
-              "type": "number",
-              "example": "60"
-            },
-            "goals": {
-              "type": "string",
-              "example": "Objetivos da disciplina é fornecer ao aluno os conceitos e fundamentos de construção de software e a capacidade de modelar e construir software de forma limpa e reutilizável."
-            },
-            "syllabus": {
-              "type": "string",
-              "example": "Visão geral sobre os fundamentos de construção de software. Estudo de conceitos relacionados à reutilização de software.  Entendimento e exploração dos conceitos de frameworks, componentes e linhas de produtos de software. Conhecimento das arquiteturas dirigidas por modelos. Desenvolvimento e uso de ferramentas de reutilização de software."
+    "/discipline/{id}": {
+      "get": {
+        "tags": ["Disciplines"],
+        "description": "Endpoint to fetch a discipline by ID.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "description": "An admin access token.",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AccessToken"
+            }
+          },
+          {
+            "name": "id",
+            "description": "A discipline ID.",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MongoID"
             }
           }
-        },
-        "DisciplineResponseBody": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "number",
-              "example": "46504-04"
-            },
-            "cod": {
-              "type": "string",
-              "example": "46504-04"
-            },
-            "name": {
-              "type": "string",
-              "example": "Construção de Software"
-            },
-            "credits": {
-              "type": "number",
-              "example": "04"
-            },
-            "valid": {
-              "type": "string",
-              "example": "2022/2"
-            },
-            "workload": {
-              "type": "number",
-              "example": "60"
-            },
-            "goals": {
-              "type": "string",
-              "example": "Objetivos da disciplina é fornecer ao aluno os conceitos e fundamentos de construção de software e a capacidade de modelar e construir software de forma limpa e reutilizável."
-            },
-            "syllabus": {
-              "type": "string",
-              "example": "Visão geral sobre os fundamentos de construção de software. Estudo de conceitos relacionados à reutilização de software.  Entendimento e exploração dos conceitos de frameworks, componentes e linhas de produtos de software. Conhecimento das arquiteturas dirigidas por modelos. Desenvolvimento e uso de ferramentas de reutilização de software."
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok.",
+            "schema": {
+              "$ref": "#/components/schemas/CreateUserRequestBody"
             }
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "401": {
+            "description": "Unauthorized (Not Logged In)."
+          },
+          "404": {
+            "description": "Discipline not found."
+          }
+        }
+      },
+      "put": {
+        "tags": ["Disciplines"],
+        "description": "Endpoint to update a discipline.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "description": "An admin access token",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AccessToken"
+            }
+          },
+          {
+            "name": "id",
+            "description": "A discipline ID",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MongoID"
+            }
+          },
+          {
+            "name": "body",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/DisciplineRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok.",
+            "schema": {
+              "$ref": "#/components/schemas/DisciplineRequestBody"
+            }
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "401": {
+            "description": "Unauthorized (Not Logged In)."
+          },
+          "404": {
+            "description": "Discipline not found."
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Disciplines"],
+        "description": "Endpoint to update disciplines attributes.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "description": "An admin access token.",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AccessToken"
+            }
+          },
+          {
+            "name": "id",
+            "description": "A discipline ID.",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MongoID"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "attribute": {
+                  "type": "?",
+                  "example": "attribute-value"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok.",
+            "schema": {
+              "$ref": "#/components/schemas/DisciplineResponseBody"
+            }
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "401": {
+            "description": "Unauthorized (Not Logged In)."
+          },
+          "404": {
+            "description": "Discipline not found."
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Disciplines"],
+        "description": "Endpoint to delete a discipline.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "description": "An admin access token.",
+            "in": "header",
+            "schema": {
+              "$ref": "#/components/schemas/AccessToken"
+            }
+          },
+          {
+            "name": "id",
+            "description": "A discipline ID.",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/MongoID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok.",
+            "schema": {
+              "$ref": "#/components/schemas/DisciplineResponseBody"
+            }
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "401": {
+            "description": "Unauthorized (Not Logged In)."
+          },
+          "404": {
+            "description": "Discipline not found."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccessToken": {
+        "type": "string",
+        "example": "Bearer <YOUR_TOKEN>"
+      },
+      "MongoID": {
+        "type": "string",
+        "example": "36c924ba73974253a5b672a65bf707ae"
+      },
+      "DisciplineRequestBody": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": "46504-04"
+          },
+          "cod": {
+            "type": "string",
+            "example": "46504-04"
+          },
+          "name": {
+            "type": "string",
+            "example": "Construção de Software"
+          },
+          "credits": {
+            "type": "number",
+            "example": "04"
+          },
+          "valid": {
+            "type": "string",
+            "example": "2022/2"
+          },
+          "workload": {
+            "type": "number",
+            "example": "60"
+          },
+          "goals": {
+            "type": "string",
+            "example": "Objetivos da disciplina é fornecer ao aluno os conceitos e fundamentos de construção de software e a capacidade de modelar e construir software de forma limpa e reutilizável."
+          },
+          "syllabus": {
+            "type": "string",
+            "example": "Visão geral sobre os fundamentos de construção de software. Estudo de conceitos relacionados à reutilização de software.  Entendimento e exploração dos conceitos de frameworks, componentes e linhas de produtos de software. Conhecimento das arquiteturas dirigidas por modelos. Desenvolvimento e uso de ferramentas de reutilização de software."
+          }
+        }
+      },
+      "DisciplineResponseBody": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": "46504-04"
+          },
+          "cod": {
+            "type": "string",
+            "example": "46504-04"
+          },
+          "name": {
+            "type": "string",
+            "example": "Construção de Software"
+          },
+          "credits": {
+            "type": "number",
+            "example": "04"
+          },
+          "valid": {
+            "type": "string",
+            "example": "2022/2"
+          },
+          "workload": {
+            "type": "number",
+            "example": "60"
+          },
+          "goals": {
+            "type": "string",
+            "example": "Objetivos da disciplina é fornecer ao aluno os conceitos e fundamentos de construção de software e a capacidade de modelar e construir software de forma limpa e reutilizável."
+          },
+          "syllabus": {
+            "type": "string",
+            "example": "Visão geral sobre os fundamentos de construção de software. Estudo de conceitos relacionados à reutilização de software.  Entendimento e exploração dos conceitos de frameworks, componentes e linhas de produtos de software. Conhecimento das arquiteturas dirigidas por modelos. Desenvolvimento e uso de ferramentas de reutilização de software."
           }
         }
       }
     }
   }
+}
