@@ -1,2 +1,3 @@
 node_modules
-disciplines/build
+build
+package-lock.json
