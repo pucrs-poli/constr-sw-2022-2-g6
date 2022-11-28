@@ -54,7 +54,7 @@ services:
     environment:
       - KEYCLOAK_API_HOST=host.docker.internal
       - KEYCLOAK_API_PORT=3000
-      - MONGODB_HOST=mongo
+      - MONGODB_HOST=mongodb
       - MONGODB_PORT=27017
       - MONGODB_USER=admin
       - MONGODB_PASSWORD=a12345678
@@ -63,7 +63,7 @@ services:
       - constr-sw-2022-2
     depends_on:
       - keycloak_api
-      - mongo
+      - mongodb
   # {api}-api:
     # container-name: {api}-api
     # ...
