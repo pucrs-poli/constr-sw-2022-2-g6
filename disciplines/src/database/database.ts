@@ -13,7 +13,7 @@ import mongoose from "mongoose";
 
 
 const DATABASE_NAME = "disciplines";
-const url = `mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}/${DATABASE_NAME}?authSource=admin`;
+const url = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}/${DATABASE_NAME}?authSource=admin`;
 //const url = `mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}/${DATABASE_NAME}?authSource=admin`;
 export async function startDatabase() {
   try {
@@ -23,6 +23,6 @@ export async function startDatabase() {
     await Discipline.createCollection();
     console.log("[OK] Building collection.");
   } catch (error) {
-    throw error;
-  }
+      throw error;
+    }
 }
