@@ -1,4 +1,4 @@
-FROM node:14.17.3
+FROM node:16.15.1
 WORKDIR /home/disciplines
 COPY . .
 RUN npm install
