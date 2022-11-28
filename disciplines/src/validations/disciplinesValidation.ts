@@ -11,7 +11,7 @@ export default class DisciplinesValidations {
     valid: Joi.string().required(),
     workload: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
     goals: Joi.string().required(),
-    syllabus: Joi.string().required(),
+    syllabus: Joi.string().required()
     //requisite: Joi.string().required(),
     //semester: Joi.mongoose.Schema.Types.ObjectId
   });
