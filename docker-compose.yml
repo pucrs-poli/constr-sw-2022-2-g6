@@ -35,7 +35,7 @@ services:
     depends_on:
       - keycloak
   mongo:
-    container_name: mongodb
+    container_name: mongo
     image: mongo:latest
     ports:
       - 27017:27017
@@ -54,7 +54,7 @@ services:
     environment:
       - KEYCLOAK_API_HOST=host.docker.internal
       - KEYCLOAK_API_PORT=3000
-      - MONGODB_HOST=mongodb
+      - MONGODB_HOST=mongo
       - MONGODB_PORT=27017
       - MONGODB_USER=admin
       - MONGODB_PASSWORD=a12345678
