@@ -45,8 +45,8 @@
         }
       },
       "post": {
-        "tags": ["Users"],
-        "description": "Endpoint to fetch all users.",
+        "tags": ["Disciplines"],
+        "description": "Endpoint to create disciplines..",
         "parameters": [
           {
             "name": "Authorization",
