@@ -4,7 +4,7 @@ import IDiscipline from "../interfaces/IDiscipline";
 
 
 const disciplineSchema = new mongoose.Schema<IDiscipline>({
-    id: {type: mongoose.Schema.Types.Number, required: true}, //codigo da disciplina
+    //id: {type: mongoose.Schema.Types.Number, required: true}, //codigo da disciplina
     cod: {type: String, required: true},
     name: {type: String, required: true},
     credits: {type: Number, required: true}, //creditos 

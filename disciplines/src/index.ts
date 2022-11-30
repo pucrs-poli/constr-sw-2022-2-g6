@@ -42,8 +42,8 @@ router.setupRoutes();
   Start the API server.
 */
 app.listen(API_PORT, () => {
-  console.log(`Disciplines API running on port ${API_PORT}.\n`);
+  console.log(`Disciplines API running on port ${API_PORT} 🚀.\n`);
   console.log(
-    `Disciplines Swagger docs available at ${SWAGGER_ENDPOINT}.\n`
+    `Disciplines Swagger docs available at ${SWAGGER_ENDPOINT} 🎓.\n`
   );
 });

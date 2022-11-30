@@ -20,7 +20,7 @@
     "/discipline": {
       "post": {
         "tags": ["Disciplines"],
-        "description": "Endpoint to create disciplines..",
+        "description": "Endpoint to create disciplines.",
         "parameters": [
           {
             "name": "Authorization",
@@ -28,14 +28,6 @@
             "in": "header",
             "schema": {
               "$ref": "#/components/schemas/AccessToken"
-            }
-          },
-          {
-            "name": "id",
-            "description": "A discipline ID",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/MongoID"
             }
           },
           {
@@ -200,7 +192,7 @@
               "type": "object",
               "properties": {
                 "attribute": {
-                  "type": "?",
+                  "type": "",
                   "example": "attribute-value"
                 }
               }
@@ -272,17 +264,9 @@
         "type": "string",
         "example": "Bearer <YOUR_TOKEN>"
       },
-      "MongoID": {
-        "type": "string",
-        "example": "36c924ba73974253a5b672a65bf707ae"
-      },
       "DisciplineRequestBody": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "number",
-            "example": "46504-04"
-          },
           "cod": {
             "type": "string",
             "example": "46504-04"
@@ -316,10 +300,6 @@
       "DisciplineResponseBody": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "number",
-            "example": "46504-04"
-          },
           "cod": {
             "type": "string",
             "example": "46504-04"
