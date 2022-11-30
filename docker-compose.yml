@@ -52,8 +52,8 @@ services:
     ports:
       - 8086:8086
     environment:
-      #- KEYCLOAK_API_HOST=auth
-      #- KEYCLOAK_API_PORT=3000
+      - KEYCLOAK_API_HOST=auth
+      - KEYCLOAK_API_PORT=8080
       - MONGODB_HOST=mongodb
       - MONGODB_PORT=27017
       - MONGODB_USER=admin
