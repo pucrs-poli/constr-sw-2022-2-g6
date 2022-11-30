@@ -1,5 +1,5 @@
-FROM node:16.18.1
-WORKDIR /disciplines
+FROM node:18.8.0
+WORKDIR /home/disciplines
 COPY . .
 RUN npm install
 CMD ["npm", "start"]

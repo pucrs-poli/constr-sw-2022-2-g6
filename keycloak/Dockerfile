@@ -1,4 +1,4 @@
-FROM node:16.18.1
+FROM node:18.8.0
 WORKDIR /keycloak
 COPY . .
 RUN npm install
