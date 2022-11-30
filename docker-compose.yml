@@ -25,7 +25,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      - KEYCLOAK_HOST=host.docker.internal
+      - KEYCLOAK_HOST=auth
       - KEYCLOAK_PORT=8080
       - API_PORT=3000
       - REALM_NAME=constr-sw-2022-2
@@ -34,8 +34,8 @@ services:
       - constr-sw-2022-2
     depends_on:
       - keycloak
-  mongo:
-    container_name: mongo
+  mongodb:
+    container_name: mongodb
     image: mongo:latest
     ports:
       - 27017:27017
@@ -52,9 +52,9 @@ services:
     ports:
       - 8086:8086
     environment:
-      - KEYCLOAK_API_HOST=host.docker.internal
+      - KEYCLOAK_API_HOST=auth
       - KEYCLOAK_API_PORT=3000
-      - MONGODB_HOST=mongo
+      - MONGODB_HOST=mongodb
       - MONGODB_PORT=27017
       - MONGODB_USER=admin
       - MONGODB_PASSWORD=a12345678

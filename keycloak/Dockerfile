@@ -1,4 +1,4 @@
-FROM node:19-bullseye
+FROM node:16.18.1
 WORKDIR /keycloak
 COPY . .
 RUN npm install
